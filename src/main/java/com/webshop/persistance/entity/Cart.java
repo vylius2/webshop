@@ -2,6 +2,7 @@ package com.webshop.persistance.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@Table(name = "cart")
 public class Cart {
 
     @Id
@@ -25,7 +28,7 @@ public class Cart {
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "product_cart",
+    @JoinTable(name = "cart_product",
             joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
     )

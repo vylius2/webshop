@@ -55,3 +55,12 @@ CREATE TABLE cart_product
     cart_id BIGINT NOT NULL REFERENCES cart(id),
     product_id BIGINT NOT NULL REFERENCES product(id)
 );
+
+INSERT INTO "user" (username, password)
+VALUES ('admin', 'admin');
+INSERT INTO role (name)
+VALUES ('ADMIN');
+INSERT INTO product(name, price, description, picture_path)
+VALUES('Pomidoras', 2.99, 'Raudonas pomidoras', 'null');
+INSERT INTO comment (content, product_id, user_id)
+VALUES('bumshakalaka-yeyo', 1, 1);

@@ -1,7 +1,9 @@
 package com.webshop.persistance.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
+@Table(name = "\"user\"")
 public class User {
 
     @Id
@@ -18,6 +22,7 @@ public class User {
 
     private String username;
 
+    @JsonIgnore
     private String password;
 
     @CreationTimestamp
