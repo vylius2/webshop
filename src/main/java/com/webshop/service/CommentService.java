@@ -24,4 +24,9 @@ public class CommentService {
     public List<Comment> getComments(){
         return commentRepository.findAll();
     }
+
+
+    public List<Comment> getAllCommentByProduct(Long id) {
+        return commentRepository.findAllByProductId(id);
+    }
 }
