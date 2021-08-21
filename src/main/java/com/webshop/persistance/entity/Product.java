@@ -1,5 +1,6 @@
 package com.webshop.persistance.entity;
 
+import com.webshop.api.dto.request.CreateProductRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,10 @@ public class Product {
     private String description;
     private String picturePath;
 
+    public Product(CreateProductRequest createProductRequest){
+        this.name = createProductRequest.getName();
+        this.price = createProductRequest.getPrice() == null ? BigDecimal.valueOf(0) : getPrice();
+        this.description = createProductRequest.getDescription();
+        this.picturePath = createProductRequest.getPicturePath();
+    }
 }

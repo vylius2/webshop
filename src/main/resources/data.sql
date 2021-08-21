@@ -28,8 +28,8 @@ CREATE TABLE user_role
 CREATE TABLE product
 (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(55),
-    price NUMERIC(10, 2),
+    name VARCHAR(55) NOT NULL,
+    price NUMERIC(10, 2) DEFAULT 0.00,
     description TEXT,
     picture_path VARCHAR(255)
 );
