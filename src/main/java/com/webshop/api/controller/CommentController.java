@@ -30,8 +30,10 @@ public class CommentController {
 
     @GetMapping("product/{id}")
     public List<Comment> getAllCommentByProduct(@PathVariable("id") Long id){
+
+        //TODO IF VELIAU GALI BUTI NEBUTINAS!!!
+
         if (!productService.existsById(id)){
-            System.out.println("Bys");
             throw new ProductNotFound(id);
         }
         return commentService.getAllCommentByProduct(id);

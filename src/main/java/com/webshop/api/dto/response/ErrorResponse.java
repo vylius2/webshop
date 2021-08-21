@@ -2,7 +2,7 @@ package com.webshop.api.dto.response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.webshop.api.dto.error.Error;
+import com.webshop.api.dto.enumerated.Error;
 @Data
 @NoArgsConstructor
 public class ErrorResponse {

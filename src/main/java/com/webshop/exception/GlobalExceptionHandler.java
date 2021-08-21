@@ -1,6 +1,6 @@
 package com.webshop.exception;
 
-import com.webshop.api.dto.error.Error;
+import com.webshop.api.dto.enumerated.Error;
 import com.webshop.api.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
