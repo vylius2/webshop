@@ -1,5 +1,6 @@
 package com.webshop.persistance.entity;
 
+import com.webshop.api.dto.request.CreateCommentRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +19,6 @@ public class Comment {
 
     private String content;
 
-
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -30,5 +30,8 @@ public class Comment {
     @CreationTimestamp
     private LocalDateTime created;
 
+    public Comment(CreateCommentRequest createCommentRequest, Long productId){
+        this.content = createCommentRequest.getContent();
+    }
 
 }

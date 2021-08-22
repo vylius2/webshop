@@ -1,7 +1,9 @@
 package com.webshop.api.controller;
 
 import com.webshop.api.dto.request.CreateProductRequest;
+import com.webshop.api.dto.request.UpdateProductRequest;
 import com.webshop.api.dto.response.CreateProductResponse;
+import com.webshop.api.dto.response.UpdateProductResponse;
 import com.webshop.persistance.entity.Product;
 import com.webshop.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +29,17 @@ public class ProductController {
     public CreateProductResponse createProduct(@Valid @RequestBody CreateProductRequest createProductRequest){
         return new CreateProductResponse(productService.create(new Product(createProductRequest)));
     }
+
+    //EDIT
+    @PutMapping("/update/{id}")
+    public UpdateProductResponse update(@PathVariable("id") Long id,
+                                        @Valid @RequestBody UpdateProductRequest updateProductRequest){
+        //TODO NESEREALIZUOJA I BIGDECIMAL
+        return new UpdateProductResponse(productService.update(id, updateProductRequest));
+    }
+    //GET BY NAME
+
+    //GET BY ID
+
+    //DELETE
 }

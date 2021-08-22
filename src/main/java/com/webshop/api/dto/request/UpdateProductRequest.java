@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProductRequest {
+public class UpdateProductRequest {
     @Size(min = 2, max = 55)
     private String name;
 
@@ -26,5 +27,4 @@ public class CreateProductRequest {
     @Size(max = 255)
     @NotBlank
     private String picturePath;
-
 }

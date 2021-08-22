@@ -1,22 +1,22 @@
 package com.webshop.api.controller;
 
+import com.webshop.api.dto.request.CreateCommentRequest;
+import com.webshop.api.dto.response.CreateCommentResponse;
 import com.webshop.exception.ProductNotFound;
 import com.webshop.persistance.entity.Comment;
 import com.webshop.service.CommentService;
 import com.webshop.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/comment")
 public class CommentController {
 
-    private ProductService productService;
-    private CommentService commentService;
+    private final ProductService productService;
+    private final CommentService commentService;
 
     public CommentController(CommentService commentService, ProductService productService){
         this.commentService = commentService;
@@ -39,4 +39,15 @@ public class CommentController {
         return commentService.getAllCommentByProduct(id);
     }
 
+    @PostMapping("/create")
+    public CreateCommentResponse create(@Valid @RequestBody CreateCommentRequest createCommentRequest){
+        return null;
+
+        //TODO FINISH THIS!!
+
+    }
+
+    //DELETE
+
+    //EDIT
 }
