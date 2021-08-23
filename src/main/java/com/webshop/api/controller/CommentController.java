@@ -1,7 +1,11 @@
 package com.webshop.api.controller;
 
 import com.webshop.api.dto.request.CreateCommentRequest;
+import com.webshop.api.dto.request.UpdateCommentRequest;
+import com.webshop.api.dto.request.UpdateProductRequest;
 import com.webshop.api.dto.response.CreateCommentResponse;
+import com.webshop.api.dto.response.UpdateCommentResponse;
+import com.webshop.api.dto.response.UpdateProductResponse;
 import com.webshop.exception.ProductNotFound;
 import com.webshop.persistance.entity.Comment;
 import com.webshop.service.CommentService;
@@ -39,15 +43,20 @@ public class CommentController {
         return commentService.getAllCommentByProduct(id);
     }
 
-    @PostMapping("/create")
-    public CreateCommentResponse create(@Valid @RequestBody CreateCommentRequest createCommentRequest){
-        return null;
-
-        //TODO FINISH THIS!!
-
+    @PostMapping("/create/{productId}")
+    public CreateCommentResponse create(@PathVariable Long productId,
+                                        @Valid @RequestBody CreateCommentRequest createCommentRequest){
+        return new CreateCommentResponse(commentService.save(createCommentRequest, productId));
     }
 
-    //DELETE
+    @DeleteMapping("/delete/{commentId}")
+    public void delete(@PathVariable Long commentId){
+        commentService.delete(commentId);
+    }
 
-    //EDIT
+    @PutMapping("/update/{id}")
+    public UpdateCommentResponse update(@PathVariable("id") Long id,
+                                        @Valid @RequestBody UpdateCommentRequest updateCommentRequest){
+        return new UpdateCommentResponse(commentService.update(id, updateCommentRequest));
+    }
 }

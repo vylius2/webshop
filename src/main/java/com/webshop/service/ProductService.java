@@ -1,6 +1,7 @@
 package com.webshop.service;
 
 import com.webshop.api.dto.request.UpdateProductRequest;
+import com.webshop.exception.ProductNotFound;
 import com.webshop.persistance.entity.Product;
 import com.webshop.persistance.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,13 @@ public class ProductService {
     public Product update(Long productId, UpdateProductRequest updateProductRequest) {
         return productRepository.save(new Product(productId, updateProductRequest));
 
+    }
+    public Product getById(Long id){
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFound(id));
+    }
+
+    public List<Product> searchByName(String name){
+        return productRepository.getProductsByNameContainingIgnoreCase(name);
     }
 
 }

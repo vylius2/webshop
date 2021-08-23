@@ -30,15 +30,16 @@ public class ProductController {
         return new CreateProductResponse(productService.create(new Product(createProductRequest)));
     }
 
-    //EDIT
     @PutMapping("/update/{id}")
     public UpdateProductResponse update(@PathVariable("id") Long id,
                                         @Valid @RequestBody UpdateProductRequest updateProductRequest){
-        //TODO NESEREALIZUOJA I BIGDECIMAL
         return new UpdateProductResponse(productService.update(id, updateProductRequest));
     }
     //GET BY NAME
-
+    @GetMapping("/get/{name}")
+    public List<Product> getByName(@PathVariable("name") String name){
+        return productService.searchByName(name);
+    }
     //GET BY ID
 
     //DELETE

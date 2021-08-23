@@ -1,6 +1,9 @@
 package com.webshop.persistance.entity;
 
 import com.webshop.api.dto.request.CreateCommentRequest;
+import com.webshop.api.dto.request.UpdateCommentRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,8 +13,10 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Builder
 @Table(name = "comment")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +35,25 @@ public class Comment {
     @CreationTimestamp
     private LocalDateTime created;
 
-    public Comment(CreateCommentRequest createCommentRequest, Long productId){
+    public Comment(CreateCommentRequest createCommentRequest, Product product){
+        this.product = product;
         this.content = createCommentRequest.getContent();
+
+        //KOLKAS BUS NULL, KAIP BUS IMPLEMENTUOTAS SECURITY PERDARYTI SU @AuthenticationPrincipal-- sita daryt ne sitoj vietoj o service
+        this.user = new User();
+        this.user.setId(1L);
+        //---------------------------------------------------------------------------------------
     }
 
+    public Comment(Long id, UpdateCommentRequest updateCommentRequest) {
+        this.id = id;
+        this.content = updateCommentRequest.getContent();
+    }
+    public Comment(Long id, UpdateCommentRequest updateCommentRequest, User user, Product product) {
+        this.id = id;
+        this.content = updateCommentRequest.getContent();
+        this.user = user;
+        this.product = product;
+        this.created = LocalDateTime.now();
+    }
 }
