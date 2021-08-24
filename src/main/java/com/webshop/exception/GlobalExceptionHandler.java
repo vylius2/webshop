@@ -22,4 +22,10 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(404, Error.COMMENT_NOT_FOUND, message);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(UserAlreadyExists.class)
+    public ResponseEntity<ErrorResponse> handle(UserAlreadyExists e){
+        String message = String.format("User with username: %s already exists", e.getUsername());
+        ErrorResponse errorResponse = new ErrorResponse(409, Error.USER_ALREADY_EXISTS, message);
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
 }
