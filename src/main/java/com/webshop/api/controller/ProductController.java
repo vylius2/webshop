@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -35,12 +36,16 @@ public class ProductController {
                                         @Valid @RequestBody UpdateProductRequest updateProductRequest){
         return new UpdateProductResponse(productService.update(id, updateProductRequest));
     }
-    //GET BY NAME
-    @GetMapping("/get/{name}")
-    public List<Product> getByName(@PathVariable("name") String name){
+    @GetMapping("/search")
+    public List<Product> getByName(@RequestParam(value = "name", required = false) String name){
         return productService.searchByName(name);
     }
-    //GET BY ID
-
-    //DELETE
+    @GetMapping("/get/{id}")
+    public Product getById(@PathVariable("id") Long id){
+        return productService.getById(id);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        productService.delete(id);
+    }
 }

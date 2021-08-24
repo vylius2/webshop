@@ -40,7 +40,12 @@ public class ProductService {
     }
 
     public List<Product> searchByName(String name){
+        if (name == null)
+            return productRepository.findAll();
         return productRepository.getProductsByNameContainingIgnoreCase(name);
     }
 
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
 }

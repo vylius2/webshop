@@ -16,4 +16,10 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(404, Error.PRODUCT_NOT_FOUND, message);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CommentNotFound.class)
+    public ResponseEntity<ErrorResponse> handle(CommentNotFound e){
+        String message = String.format("Comment with id: %d was not found", e.getId());
+        ErrorResponse errorResponse = new ErrorResponse(404, Error.COMMENT_NOT_FOUND, message);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }

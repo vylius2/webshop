@@ -26,7 +26,7 @@ public class Product {
 
     public Product(CreateProductRequest createProductRequest) {
         this.name = createProductRequest.getName();
-        this.price = createProductRequest.getPrice() == null ? BigDecimal.valueOf(0) : getPrice();
+        this.price = createProductRequest.getPrice() == null ? BigDecimal.valueOf(0) : createProductRequest.getPrice();
         this.description = createProductRequest.getDescription();
         this.picturePath = createProductRequest.getPicturePath();
     }

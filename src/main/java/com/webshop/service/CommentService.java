@@ -2,11 +2,11 @@ package com.webshop.service;
 
 import com.webshop.api.dto.request.CreateCommentRequest;
 import com.webshop.api.dto.request.UpdateCommentRequest;
+import com.webshop.exception.CommentNotFound;
 import com.webshop.persistance.entity.Comment;
 import com.webshop.persistance.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,12 +40,9 @@ public class CommentService {
         commentRepository.deleteById(commentId);
     }
     public Comment update(Long id, UpdateCommentRequest updateCommentRequest){
-        return commentRepository.save(Comment.builder()
-                .id(id)
-                .content(updateCommentRequest.getContent())
-                .user(userService.getById(updateCommentRequest.getUserId()))
-                .product(productService.getById(updateCommentRequest.getProductId()))
-                .created(LocalDateTime.now())
-                .build());
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentNotFound(id));
+        comment.setContent(updateCommentRequest.getContent());
+        return commentRepository.save(comment);
+
     }
 }
