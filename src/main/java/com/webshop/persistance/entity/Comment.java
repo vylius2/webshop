@@ -38,11 +38,8 @@ public class Comment {
     public Comment(CreateCommentRequest createCommentRequest, Product product){
         this.product = product;
         this.content = createCommentRequest.getContent();
-
-        //KOLKAS BUS NULL, KAIP BUS IMPLEMENTUOTAS SECURITY PERDARYTI SU @AuthenticationPrincipal-- sita daryt ne sitoj vietoj o service
         this.user = new User();
         this.user.setId(3L);
-        //---------------------------------------------------------------------------------------
     }
 
     public Comment(Long id, UpdateCommentRequest updateCommentRequest) {

@@ -8,6 +8,8 @@ import com.webshop.exception.ProductNotFound;
 import com.webshop.persistance.entity.Comment;
 import com.webshop.service.CommentService;
 import com.webshop.service.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,11 +28,13 @@ public class CommentController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Comment> getAllComments(){
         return commentService.getComments();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public List<Comment> getAllCommentByProduct(@PathVariable("id") Long id){
         if (!productService.existsById(id)){
             throw new ProductNotFound(id);
@@ -39,17 +43,21 @@ public class CommentController {
     }
 
     @PostMapping("/product/{productId}")
+    @PreAuthorize("hasRole('USER')")
     public CreateCommentResponse create(@PathVariable Long productId,
                                         @Valid @RequestBody CreateCommentRequest createCommentRequest){
         return new CreateCommentResponse(commentService.save(createCommentRequest, productId));
     }
 
     @DeleteMapping("/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long commentId){
         commentService.delete(commentId);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public UpdateCommentResponse update(@PathVariable("id") Long id,
                                         @Valid @RequestBody UpdateCommentRequest updateCommentRequest){
         return new UpdateCommentResponse(commentService.update(id, updateCommentRequest));
