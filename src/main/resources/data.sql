@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS "user";
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS user_role;
-DROP TABLE IF EXISTS product;
-DROP TABLE IF EXISTS cart;
-DROP TABLE IF EXISTS cart_product;
+DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS role CASCADE;
+DROP TABLE IF EXISTS user_role CASCADE;
+DROP TABLE IF EXISTS product CASCADE;
+DROP TABLE IF EXISTS cart CASCADE;
+DROP TABLE IF EXISTS cart_product CASCADE;
 
 CREATE TABLE "user"
 (
@@ -56,11 +56,14 @@ CREATE TABLE cart_product
     product_id BIGINT NOT NULL REFERENCES product(id)
 );
 
-INSERT INTO "user" (username, password)
-VALUES ('admin', 'admin');
-INSERT INTO role (name)
-VALUES ('ADMIN');
-INSERT INTO product(name, price, description, picture_path)
-VALUES('Pomidoras', 2.99, 'Raudonas pomidoras', 'null');
-INSERT INTO comment (content, product_id, user_id)
-VALUES('bumshakalaka-yeyo', 1, 1);
+INSERT INTO "user" (id, username, password)
+VALUES (1, 'vilius2', '{bcrypt}$2a$10$lIQOAXhMFdXahaKZutZggefbXnBqOaAGxozJGTRGlLnQnmCmTFGY6');
+INSERT INTO role (id, name)
+VALUES (1, 'ADMIN'),
+       (2, 'USER');
+INSERT INTO user_role (user_id, role_id)
+VALUES (1, 1),
+       (1, 2);
+INSERT INTO product (id, name, price, description, picture_path)
+VALUES (1, 'Pomidoras', 1, 'Raudonas pomidoras', 'C:/asd/petras'),
+       (2, 'Ryziai', 2, 'Energingi', 'C:/ne/taip');

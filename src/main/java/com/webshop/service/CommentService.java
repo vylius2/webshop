@@ -32,6 +32,7 @@ public class CommentService {
     public List<Comment> getAllCommentByProduct(Long id) {
         return commentRepository.findAllByProductId(id);
     }
+
     public Comment save(CreateCommentRequest createCommentRequest, Long productId){
         return commentRepository.save(new Comment(createCommentRequest, productService.getById(productId)));
     }

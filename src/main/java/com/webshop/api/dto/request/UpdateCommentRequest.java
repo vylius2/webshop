@@ -1,6 +1,5 @@
 package com.webshop.api.dto.request;
 
-import com.webshop.persistance.entity.Product;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

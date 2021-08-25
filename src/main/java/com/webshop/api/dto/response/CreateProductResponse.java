@@ -1,7 +1,6 @@
 package com.webshop.api.dto.response;
 
 import com.webshop.persistance.entity.Product;
-import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;

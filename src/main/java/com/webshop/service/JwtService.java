@@ -33,8 +33,8 @@ public class JwtService {
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setIssuer("car-api")
-                .setAudience("car-ui")
+                .setIssuer("product-api")
+                .setAudience("product-ui")
                 .setSubject(user.getUsername())
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + validityMin * 60000))

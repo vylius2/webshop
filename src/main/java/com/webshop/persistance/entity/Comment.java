@@ -41,7 +41,7 @@ public class Comment {
 
         //KOLKAS BUS NULL, KAIP BUS IMPLEMENTUOTAS SECURITY PERDARYTI SU @AuthenticationPrincipal-- sita daryt ne sitoj vietoj o service
         this.user = new User();
-        this.user.setId(1L);
+        this.user.setId(3L);
         //---------------------------------------------------------------------------------------
     }
 

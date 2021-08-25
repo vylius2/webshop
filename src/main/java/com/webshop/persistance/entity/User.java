@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.api.dto.UserDTO;
 import com.webshop.api.dto.request.RegisterRequest;
-import com.webshop.persistance.repository.RoleRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
